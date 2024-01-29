@@ -11,7 +11,6 @@ class TaskForm(forms.ModelForm):
             "title": forms.TextInput(
                 attrs={
                     "class": "form-control",
-                    "placeholder": "Enter the title of task",
                 }
             ),
             "priority": forms.Select(

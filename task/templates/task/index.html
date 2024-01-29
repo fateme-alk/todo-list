@@ -36,6 +36,14 @@
     #list1 .select-input.form-control[readonly]:not([disabled]) {
       background-color: #fbfbfb;
     }
+    #list1
+    {
+        border-radius: .75rem;
+        background-color: #eff1f2;
+    }
+    #exampleFormControlInput1{
+        background-color: blue;
+    }
         </style>
         <section class="vh-100">
             <div class="container py-5 h-100">
@@ -50,16 +58,16 @@
                                 <div class="pb-2">
                                     <div class="card">
                                         <div class="card-body">
-                                            <div class="d-flex flex-row align-items-center">
-                                                <input type="text"
-                                                       class="form-control form-control-lg"
-                                                       id="exampleFormControlInput1"
-                                                       placeholder="Add new...">
-                                                <a href="#!" data-mdb-toggle="tooltip" title="Set due date"><i class="fas fa-calendar-alt fa-lg me-3"></i></a>
-                                                <div>
-                                                    <button type="button" class="btn btn-primary">Add</button>
-                                                </div>
-                                            </div>
+                                            <form method="post" enctype="multipart/form-data">
+                                                {% csrf_token %}
+                                                {{ form.title.label_tag }}
+                                                {{ form.title }}
+                                                {{ form.priority.label_tag }}
+                                                {{ form.priority }}
+                                                <button type="submit"
+                                                        class="btn btn-secondary mt-3"
+                                                        id="exampleFormControlInput1">add task</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

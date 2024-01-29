@@ -13,7 +13,7 @@ class Task(models.Model):
     created_at = models.DateField(auto_now_add=True)
     deadline = models.DateTimeField(blank=True, null=True)
     priority = models.CharField(max_length=50, choices=PRIORITY_CHOICES)
-    status = models.BooleanField()
+    status = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title.title()
