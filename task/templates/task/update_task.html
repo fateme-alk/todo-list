@@ -1,0 +1,10 @@
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.title.label_tag }}
+    {{ form.title }}
+    {{ form.priority.label_tag }}
+    {{ form.priority }}
+    {{ form.status.label_tag }}
+    {{ form.status }}
+    <button type="submit" class="btn btn-secondary mt-3">update task</button>
+</form>

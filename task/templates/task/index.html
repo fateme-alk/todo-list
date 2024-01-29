@@ -1,0 +1,19 @@
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.title.label_tag }}
+    {{ form.title }}
+    {{ form.priority.label_tag }}
+    {{ form.priority }}
+    {{ form.status.label_tag }}
+    {{ form.status }}
+    <button type="submit" class="btn btn-secondary mt-3">add task</button>
+</form>
+{% if tasks %}
+    {% for task in tasks %}
+        <div>{{ task.title }}</div>
+        <a href="{% url 'update' task.id %}">update task</a>
+        <a href="{% url 'delete' task.id %}">delete task</a>
+    {% endfor %}
+{% else %}
+    <div>create a task to do as soon as posiible. join us!</div>
+{% endif %}

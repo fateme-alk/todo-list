@@ -1,8 +1,5 @@
 # Create your models here.
-from django.contrib.auth import get_user_model
 from django.db import models
-
-User = get_user_model()
 
 
 class Task(models.Model):
@@ -12,10 +9,9 @@ class Task(models.Model):
         ("low", "low"),
     )
 
-    doer = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=20)
+    title = models.CharField(max_length=50)
     created_at = models.DateField(auto_now_add=True)
-    deadline = models.DateTimeField(blank=True, null=False)
+    deadline = models.DateTimeField(blank=True, null=True)
     priority = models.CharField(max_length=50, choices=PRIORITY_CHOICES)
     status = models.BooleanField()
 
