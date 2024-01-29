@@ -1,22 +1,24 @@
 # Create your views here.
-from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
-from django.views.generic import DeleteView, UpdateView
+from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
 from .forms import TaskForm
 from .models import Task
 
 
-def index(request):
-    tasks = Task.objects.all()
-    form = TaskForm()
-    if request.method == "POST":
-        form = TaskForm(request.POST)
-        if form.is_valid():
-            form.save()
-        return redirect("/")
-    context = {"tasks": tasks, "form": form}
-    return render(request, "task/index.html", context=context)
+class TaskListView(ListView):
+    model = Task
+    context_object_name = "tasks"
+
+
+class TaskCreateView(CreateView):
+    model = Task
+    form_class = TaskForm
+    success_url = reverse_lazy("list")
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
 class UpdateTaskView(UpdateView):
@@ -29,4 +31,4 @@ class UpdateTaskView(UpdateView):
 class DeleteTaskView(DeleteView):
     model = Task
     template_name = "task/delete_task.html"
-    success_url = reverse_lazy("task_list")
+    success_url = "/"
