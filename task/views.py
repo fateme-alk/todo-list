@@ -24,11 +24,10 @@ class TaskCreateView(CreateView):
 class UpdateTaskView(UpdateView):
     model = Task
     form_class = TaskForm
-    template_name = "task/update_task.html"
     success_url = "/"
 
 
 class DeleteTaskView(DeleteView):
     model = Task
-    template_name = "task/delete_task.html"
+    template_name = "task/task_delete.html"
     success_url = "/"
